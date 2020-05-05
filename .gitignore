@@ -1,0 +1,13 @@
+.vscode
+
+venv
+env
+
+.DS_Store
+
+__pycache__
+
+*.egg-info
+*.bak
+.ipynb_checkpoints
+.pytest_cache
