@@ -1,7 +1,31 @@
-# Arxiv parser
+# ScrapXiv: Arxiv parser
 
 Parse "all" the authors name and affiliations to a google spreadsheet.
 
+## Usage
+
+```
+scrapxiv --key-words "particle physics" --batch-size 10 --num-batches 3 --output-file ~/Desktop/papers.csv
+```
+
+## install
+
+Clone the repo to a folder, cd to scrapxiv, then with a python 3.8 interpreter run:
+```
+pip install -e .
+```
+Installing in a virtualenv is recommended.
+
+To prepare the environment for the library pdftotext you may need to:
+```bash
+sudo apt-get update
+sudo apt-get install build-essential libpoppler-cpp-dev pkg-config python-dev
+```
+beforehand if on Ubuntu or
+```bash
+export MACOSX_DEPLOYMENT_TARGET=10.9
+```
+if on MAC.
 
 ### Results
 
