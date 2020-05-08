@@ -3,17 +3,12 @@
 import pathlib
 
 import pkg_resources
-import setuptools
-
 from setuptools import find_packages, setup
 
-
-
-with pathlib.Path('requirements.txt').open() as requirements_txt:
+with pathlib.Path("requirements.txt").open() as requirements_txt:
     requirements = [
         str(requirement)
-        for requirement
-        in pkg_resources.parse_requirements(requirements_txt)
+        for requirement in pkg_resources.parse_requirements(requirements_txt)
     ]
 
 
