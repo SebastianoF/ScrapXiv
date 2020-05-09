@@ -7,6 +7,7 @@ def upsert_author_df(new_entries_list, df=None):
             columns=[
                 "name",
                 "affiliation",
+                "email",
                 "paper_id",
                 "paper_title",
                 "paper_published_date",

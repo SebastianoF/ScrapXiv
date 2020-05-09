@@ -1,9 +1,10 @@
 # ScrapXiv: Arxiv parser
 
-Parse "all" the authors name and affiliations to a google spreadsheet.
+Helper to scrape [Arxiv](arxiv.org).
 
-## Usage
+## CLI example
 
+To collect the names of the authors of the first 30 papers queried with the keyword "particle physics" and save them in a .csv file:
 ```
 scrapxiv --key-words "particle physics" --batch-size 10 --num-batches 3 --output-file ~/Desktop/papers.csv
 ```
@@ -36,11 +37,6 @@ The `examples` folder collects further tips about how to use the code.
 + [Papers with code](https://medium.com/paperswithcode/a-home-for-results-in-ml-e25681c598dc)
 + [Arxiv sanity](http://www.arxiv-sanity.com/)
 
-
-### WIP
-+ Exploratory analysis of arxiv API and data in progress, to understand the limitations.
-+ CLI to parse name + affiliations in a .csv file.
-+ Connection to google spreadsheet is in progress.
 
 ### Limitations
 1. Not all the authors publishing on arxiv have added their affiliation.

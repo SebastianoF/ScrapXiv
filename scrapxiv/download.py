@@ -3,6 +3,12 @@ import shutil
 import urllib
 
 
+def paper_id_to_url_and_filename(paper_id):
+    paper_url = "{}.pdf".format(paper_id.replace("abs", "pdf"))
+    filename = os.path.basename(paper_url)
+    return paper_url, filename
+
+
 def paper(
     paper_id, destination_folder, keep_all_downloaded=True, timeout_secs=10, verbose=1
 ):
@@ -11,14 +17,14 @@ def paper(
 
     already_have = set(os.listdir(destination_folder))
 
-    paper_url = "{}.pdf".format(paper_id.replace("abs", "pdf"))
-    filename = os.path.basename(paper_url)
+    paper_url, filename = paper_id_to_url_and_filename(paper_id)
+
     destination_path = os.path.join(destination_folder, filename)
 
     if filename in already_have:
         if verbose:
             print(f"paper {filename} already downloaded. Skipping!")
-        return
+        return paper_url, filename
 
     try:
         req = urllib.request.urlopen(paper_url, None, timeout_secs)
@@ -29,6 +35,8 @@ def paper(
 
     else:
         print(f"Paper {paper_url} downloaded to {destination_path}.")
+
+    return paper_url, filename
 
 
 def papers_from_list(
