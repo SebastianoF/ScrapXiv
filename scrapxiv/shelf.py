@@ -36,6 +36,15 @@ def email_from_text_and_author(text, author_name):
     for n in [a for a in author_name.replace(".", "").split(" ") if len(a) > 2]:
         for e in emails_in_the_first_page:
             if n.lower().strip() in e:
+                if "}" in e:
+                    tail = e.split("}")[1]
+                    heads = e.split("}")[0].replace("{", "").split(",")
+                    for head in heads:
+                        if n in head:
+                            return head + tail
+                        else:
+                            return ""
+
                 return e
 
     return ""
