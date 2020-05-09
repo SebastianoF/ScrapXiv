@@ -27,9 +27,15 @@ export MACOSX_DEPLOYMENT_TARGET=10.9
 ```
 if on MAC.
 
-### Results
+### Examples
 
-See the file `parser.ipynb` for an initial example.
+The `examples` folder collects further tips about how to use the code.
+
+### Resources
+
++ [Papers with code](https://medium.com/paperswithcode/a-home-for-results-in-ml-e25681c598dc)
++ [Arxiv sanity](http://www.arxiv-sanity.com/)
+
 
 ### WIP
 + Exploratory analysis of arxiv API and data in progress, to understand the limitations.
