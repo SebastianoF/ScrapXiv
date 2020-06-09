@@ -4,9 +4,10 @@ Helper to scrape [Arxiv](arxiv.org).
 
 ## CLI example
 
-To collect the names of the authors of the first 30 papers queried with the keyword "particle physics" and save them in a .csv file:
+To collect the names of the authors of the first 200 papers queried with the keyword "particle physics" and save them in two separate .csv file, one for each batch:
 ```
-scrapxiv --key-words "particle physics" --output-file ~/Desktop/papers.csv  --emails
+scrapxiv --key-words "particle physics" --output-file ~/Desktop/papers1.csv --max 100 --start 1 --emails
+scrapxiv --key-words "particle physics" --output-file ~/Desktop/papers2.csv --max 100 --start 100 --emails
 ```
 
 ## install
@@ -45,3 +46,7 @@ Please check the `examples` folder for some basic usages.
 2. Authors on Arxiv do not come with a UID, which means that if the same author has signed 3 papers with "J. Smith", "John Smith" and "John A. Smith", these publications will be attributed to three different authors.
 3. For the same reason as above, two different researchers called John Smith will be identified as a single researcher.
 4. To subsample the papers, we allowed to add a query string when accessing the API.
+
+### Licence
+
+This repository is open-sourced under MIT licence.
