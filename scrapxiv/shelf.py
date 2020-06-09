@@ -1,9 +1,7 @@
-import os
-import glob
 import concurrent.futures
+import glob
+import os
 import urllib.request
-
-import time
 
 import pdftotext
 import requests
@@ -113,7 +111,9 @@ class Shelf:
         If the paper url is 'http://arxiv.org/abs/1801.07883v2', the paper id is '1801.07883v2'.
         """
         if self.papers is None:
-            print("No papers found in the shelf. Get the intended papers with `Shelf.query`.")
+            print(
+                "No papers found in the shelf. Get the intended papers with `Shelf.query`."
+            )
         output_papers_id = []
 
         entries = self.papers.get("feed").get("entry")
@@ -126,7 +126,7 @@ class Shelf:
             entries = [entries]
 
         for entry in entries:
-            paper_id = entry.get("id").split('/')[-1]
+            paper_id = entry.get("id").split("/")[-1]
             output_papers_id.append(paper_id)
 
         return output_papers_id
@@ -164,25 +164,27 @@ class Shelf:
     def download_papers(self, verbose=0):
         """ Idempotent function to download the data from the Shelf to the designated local folder """
         if not os.path.exists(self.download_folder):
-            raise ValueError(f"Destination folder {self.download_folder} does not exists.")
-        
+            raise ValueError(
+                f"Destination folder {self.download_folder} does not exists."
+            )
+
         ids_already_have = [
-            os.path.basename(file).replace('.pdf', '')
-            for file in glob.glob(os.path.join(self.download_folder, '*.pdf'))
+            os.path.basename(file).replace(".pdf", "")
+            for file in glob.glob(os.path.join(self.download_folder, "*.pdf"))
         ]
 
         ids_to_download = set(self.get_papers_ids()) - set(ids_already_have)
 
         list_urls = [f"http://arxiv.org/pdf/{i}.pdf" for i in ids_to_download]
         list_paths_destination = [
-            os.path.join(self.download_folder, os.path.basename(url)) for url in list_urls
+            os.path.join(self.download_folder, os.path.basename(url))
+            for url in list_urls
         ]
 
         if verbose > 0:
             print("Downloading papers (in multi-threading...)")
 
         total_bytes = 0
-        parallel_time = seq_time = 0
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = [
@@ -204,9 +206,8 @@ class Shelf:
         for f in files:
             os.remove(f)
 
-
     def get_authors_dataframe(self, get_emails=False):
-        """ 
+        """
         Creates a dataframe with the authors list of the papers in the shelf.
         If get_email is True, the papers are downloaded and the first page is parsed.
         """
@@ -222,17 +223,17 @@ class Shelf:
         if not isinstance(entries, list):
             # there is a single paper in the query
             entries = [entries]
-        
+
         output_authors = []
 
         for entry in entries:
-            paper_id = entry.get("id").split('/')[-1]
+            paper_id = entry.get("id").split("/")[-1]
             paper_title = entry.get("title").replace("\n", "").replace("  ", "").strip()
             paper_published_date = entry.get("published")
 
             if get_emails:
-                
-                pdf_path = os.path.join(self.download_folder, paper_id + '.pdf')
+
+                pdf_path = os.path.join(self.download_folder, paper_id + ".pdf")
                 paper_text = pdf_path_to_text(pdf_path)
 
             for name, affiliation in parse_authors_and_affiliation(entry.get("author")):
