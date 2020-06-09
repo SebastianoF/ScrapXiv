@@ -211,7 +211,7 @@ class Shelf:
         If get_email is True, the papers are downloaded and the first page is parsed.
         """
 
-        if get_email:
+        if get_emails:
             self.download_papers(verbose=0)
 
         entries = self.papers.get("feed").get("entry")
@@ -230,14 +230,14 @@ class Shelf:
             paper_title = entry.get("title").replace("\n", "").replace("  ", "").strip()
             paper_published_date = entry.get("published")
 
-            if get_email:
+            if get_emails:
                 
                 pdf_path = os.path.join(self.download_folder, paper_id + '.pdf')
                 paper_text = pdf_path_to_text(pdf_path)
 
             for name, affiliation in parse_authors_and_affiliation(entry.get("author")):
 
-                if get_email and paper_text:
+                if get_emails and paper_text:
                     email = email_from_text_and_author(paper_text[0], name)
                 else:
                     email = ""
