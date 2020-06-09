@@ -6,8 +6,8 @@ Helper to scrape [Arxiv](arxiv.org).
 
 To collect the names of the authors of the first 200 papers queried with the keyword "particle physics" and save them in two separate .csv file, one for each batch:
 ```
-scrapxiv --key-words "particle physics" --output-file ~/Desktop/papers1.csv --max 100 --start 1 --emails
-scrapxiv --key-words "particle physics" --output-file ~/Desktop/papers2.csv --max 100 --start 100 --emails
+scrapxiv authors --key-words "particle physics" --output-file ~/Desktop/papers1.csv --max 100 --start 1 --emails
+scrapxiv authors --key-words "particle physics" --output-file ~/Desktop/papers2.csv --max 100 --start 100 --emails
 ```
 
 ## install
