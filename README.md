@@ -1,10 +1,10 @@
-# ScrapXiv: Arxiv parser
+# ScrapXiv: Arxiv scraper
 
 Helper to scrape [Arxiv](arxiv.org).
 
 ## CLI example
 
-To collect the names of the authors of the first 200 papers queried with the keyword "particle physics" and save them in two separate .csv file, one for each batch:
+To collect the names of the authors of the first 200 papers queried with the keyword "particle physics" and to save them in two separate .csv file, one for each batch, run:
 ```
 scrapxiv authors --key-words "particle physics" --output-file ~/Desktop/papers1.csv --max 100 --start 1 --emails
 scrapxiv authors --key-words "particle physics" --output-file ~/Desktop/papers2.csv --max 100 --start 100 --emails
@@ -12,7 +12,7 @@ scrapxiv authors --key-words "particle physics" --output-file ~/Desktop/papers2.
 
 ## install
 
-Clone the repo to a folder, cd to scrapxiv, then with a python 3.8 interpreter run:
+Clone the repo to a folder, cd to the cloned folder scrapxiv, then with a python 3.8 interpreter run:
 ```
 pip install -e .
 ```
