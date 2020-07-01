@@ -164,9 +164,7 @@ class Shelf:
     def download_papers(self, verbose=0):
         """ Idempotent function to download the data from the Shelf to the designated local folder """
         if not os.path.exists(self.download_folder):
-            raise ValueError(
-                f"Destination folder {self.download_folder} does not exists."
-            )
+            os.mkdir(self.download_folder)
 
         ids_already_have = [
             os.path.basename(file).replace(".pdf", "")
